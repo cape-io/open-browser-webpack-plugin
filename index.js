@@ -19,6 +19,7 @@ function OpenBrowserPlugin(options) {
 OpenBrowserPlugin.prototype.apply = function(compiler) {
   var url = this.url;
   var browser = this.browser;
+  var isWatching = false;
 
   compiler.plugin('watch-run', function checkWatchingMode(watching, done) {
     isWatching = true;
@@ -27,6 +28,8 @@ OpenBrowserPlugin.prototype.apply = function(compiler) {
 
   compiler.plugin('done', function doneCallback(stats) {
     if (isWatching && !stats.hasErrors() && !didOpen) {
+      isWatching = false;
+      didOpen = false;
       open(url, browser, function(err) {
         if (err) throw err;
       });
