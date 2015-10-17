@@ -1,6 +1,7 @@
 var open = require('open');
 
 var DEFAULT_BROWSER = undefined;
+var didOpen = false;
 
 /**
  * Opens the browser the first time if there's no compilation errors.
@@ -16,7 +17,6 @@ function OpenBrowserPlugin(options) {
 }
 
 OpenBrowserPlugin.prototype.apply = function(compiler) {
-  var didOpen = false;
   var url = this.url;
   var browser = this.browser;
 
