@@ -29,7 +29,7 @@ OpenBrowserPlugin.prototype.apply = function(compiler) {
   compiler.plugin('done', function doneCallback(stats) {
     if (isWatching && !stats.hasErrors() && !didOpen) {
       isWatching = false;
-      didOpen = false;
+      didOpen = true;
       open(url, browser, function(err) {
         if (err) throw err;
       });
